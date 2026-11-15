@@ -1,0 +1,11 @@
+.git
+.gitignore
+.github
+**/*_test.go
+coverage.out
+*.md
+sonar-project.properties
+scripts
+docker-compose.yml
+*.exe
+main
