@@ -1,0 +1,6 @@
+coverage.out
+coverage.filtered.out
+*.exe
+main
+.idea/
+.vscode/
