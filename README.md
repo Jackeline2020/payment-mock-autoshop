@@ -73,6 +73,17 @@ go test ./... -coverprofile=coverage.out
 ./scripts/coverage.sh
 ```
 
+## Cobertura e qualidade
+
+O pipeline exige **cobertura mínima de 80%** (`scripts/coverage.sh`) e
+envia a análise para o SonarCloud.
+
+Resultado no SonarCloud (branch `main`): **99,5% de cobertura**, nota A em
+segurança, confiabilidade e manutenibilidade, e 0% de duplicação.
+Projeto: [Jackeline2020_payment-mock-autoshop](https://sonarcloud.io/project/overview?id=Jackeline2020_payment-mock-autoshop).
+
+![Análise do SonarCloud](assets/sonar-cobertura.png)
+
 ## CI/CD
 
 Pipeline em `.github/workflows/ci-cd.yml`: build, `go vet`, testes,
