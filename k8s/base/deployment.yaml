@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autoshop-payment-mock
+  namespace: autoshop
+  labels:
+    app: autoshop-payment-mock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autoshop-payment-mock
+  template:
+    metadata:
+      labels:
+        app: autoshop-payment-mock
+    spec:
+      # UID/GID 10001 é o usuário não-root criado no Dockerfile
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: autoshop-payment-mock
+          # A tag é trocada pelo pipeline pela imagem do commit (kustomize edit set image)
+          image: autoshop-payment-mock:dev
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: autoshop-payment-mock-config
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 250m
+              memory: 64Mi

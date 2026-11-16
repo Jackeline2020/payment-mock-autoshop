@@ -1,0 +1,13 @@
+# Interno ao cluster: só o Billing Service chama o provedor de pagamento
+apiVersion: v1
+kind: Service
+metadata:
+  name: autoshop-payment-mock
+  namespace: autoshop
+spec:
+  type: ClusterIP
+  selector:
+    app: autoshop-payment-mock
+  ports:
+    - port: 8080
+      targetPort: 8080

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: autoshop-payment-mock-config
+  namespace: autoshop
+data:
+  PORT: "8080"
+  MOCK_CLIENT_ID: "autoshop-client"
+  MOCK_CLIENT_SECRET: "autoshop-secret"
+  MOCK_PUBLIC_URL: "http://autoshop-payment-mock:8080"
+  # Tempo até o pagamento simulado ser aprovado e o webhook ser chamado
+  MOCK_PAYMENT_DELAY: "20s"
