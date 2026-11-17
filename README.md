@@ -87,6 +87,11 @@ Projeto: [Jackeline2020_payment-mock-autoshop](https://sonarcloud.io/project/ove
 ## CI/CD
 
 Pipeline em `.github/workflows/ci-cd.yml`: build, `go vet`, testes,
-cobertura mínima de 80%, SonarCloud e publicação da imagem Docker no
-GitHub Container Registry. As branches `main` e `develop` são protegidas
-e só recebem alterações por pull request com as checagens aprovadas.
+cobertura mínima de 80%, SonarCloud, publicação da imagem Docker no
+GitHub Container Registry e, na `main`, deploy no EKS
+(`scripts/deploy-aws.sh`, habilitado pela variável `AWS_DEPLOY_ENABLED`).
+No cluster, o mock só é acessível internamente (`ClusterIP`). As branches
+`main` e `develop` são protegidas e só recebem alterações por pull request
+com as checagens aprovadas.
+
+Secrets usados: `AWS_ROLE_ARN`, `SONAR_TOKEN`.
