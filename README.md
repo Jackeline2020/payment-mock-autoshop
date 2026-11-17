@@ -49,6 +49,9 @@ este mock; muda apenas a configuração (URL, `client_id` e
 | `MOCK_PAYMENT_DELAY` | `5s` | Tempo até o pagamento simulado |
 | `MOCK_TOKEN_TTL` | `1h` | Validade do token |
 
+No cluster, `MOCK_PAYMENT_DELAY` é `20s` (`k8s/overlays/aws/configmap.yaml`),
+para dar tempo de acompanhar o pagamento pendente antes da aprovação.
+
 ## Como rodar localmente
 
 ```bash
